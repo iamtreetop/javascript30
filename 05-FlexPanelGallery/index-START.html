@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+</head>
+<body>
+  <style>
+    html {
+      box-sizing: border-box;
+      background: #ffc600;
+      font-family: 'Permanent Marker', cursive;
+      font-size: 20px;
+      font-weight: 200;
+    }
+    
+    body {
+      margin: 0;
+    }
+    
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+
+    .panels {
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+    }
+
+    .panel {
+      background: #6B0F9C;
+      box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+      color: white;
+      text-align: center;
+      align-items: center;
+      /* Safari transitionend event.propertyName === flex */
+      /* Chrome + FF transitionend event.propertyName === flex-grow */
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        background 0.2s;
+      font-size: 20px;
+      background-size: cover;
+      background-position: center;
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .panel1 { background-image:url(http://estaticos02.marca.com/albumes/2012/10/30/kobe_cromos/1351598964_extras_albumes_0.jpg); }
+    .panel2 { background-image:url(https://ftw.usatoday.com/wp-content/uploads/sites/90/2016/04/kobe2.jpg); }
+    .panel3 { background-image:url(https://hoopshabit.com/wp-content/uploads/getty-images/2017/09/102188754-nba-finals-game-7-boston-celtics-v-los-angeles-lakers.jpg.jpg); }
+    .panel4 { background-image:url(https://www.pe.com/wp-content/uploads/migration/o5c/o5cgo7-b88683196z.120160408190721000ghifs1f1.10.jpg?w=620); }
+    .panel5 { background-image:url(https://2.bp.blogspot.com/_PNWPxvREDPU/SjZphTI4FAI/AAAAAAAAIhc/Lm91Avu0cYc/s400/29.jpg); }
+
+    /* Flex Children */
+    .panel > * {
+      margin: 0;
+      width: 100%;
+      transition: transform 0.5s;
+      /* border: 1px solid green; */
+      flex: 1 0 auto;
+      display: flex; 
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel > *:first-child { 
+      transform: translateY(-100%);
+    }
+    .panel.open-active > *:first-child { 
+      transform: translateY(0);
+    }
+
+    .panel > *:last-child { 
+      transform: translateY(100%);
+    }
+    .panel.open-active > *:last-child { 
+      transform: translateY(0);
+    }
+
+    .panel p {
+      text-transform: uppercase;
+      font-family: 'Permanent Marker', cursive;
+      text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    
+    .panel p:nth-child(2) {
+      font-size: 4em;
+    }
+
+    .panel.open {
+      font-size: 40px;
+      flex: 5;
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel panel1">
+      <p>First</p>
+      <p>Thank</p>
+      <p>Ring</p>
+    </div>
+    <div class="panel panel2">
+      <p>Two</p>
+      <p>You</p>
+      <p>Easy</p>
+    </div>
+    <div class="panel panel3">
+      <p>5</p>
+      <p>8 / 24</p>
+      <p>Rings</p>
+    </div>
+    <div class="panel panel4">
+      <p>Three</p>
+      <p>Kobe</p>
+      <p>Peat</p>
+    </div>
+    <div class="panel panel5">
+      <p>4</p>
+      <p>Bryant</p>
+      <p>LA</p>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+
+    function toggleOpen() {
+      this.classList.toggle('open');
+    }
+
+    function toggleActive(e) {
+      console.log(e.propertyName);
+      if(e.propertyName.includes('flex')) {
+        this.classList.toggle('open-active');
+      }
+    }
+
+    panels.forEach((panel) => panel.addEventListener('click', toggleOpen));
+    panels.forEach((panel) => panel.addEventListener('transitionend', toggleActive));
+  </script>
+
+
+
+</body>
+</html>
