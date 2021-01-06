@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML5 Canvas</title>
+</head>
+<body>
+<canvas id="draw" width="800" height="800"></canvas>
+<script>
+  const canvas = document.querySelector('#draw');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth
+  canvas.height = window.innerHeight
+  
+  ctx.strokeStyle = '#BADA55';
+  ctx.lineJoin = ctx.lineCap = 'round';
+  ctx.lineWidth = 1;
+
+  let isDrawing, points = [];
+  let hue = 0;
+  let direction = true;
+
+  function draw(e) {
+    if(!isDrawing) return; // stop fn from running when not moused down
+    
+    points.push({ x: e.clientX, y: e.clientY });
+
+    ctx.beginPath();
+    ctx.moveTo(points[points.length - 2].x, points[points.length - 2].y);
+    ctx.lineTo(points[points.length - 1].x, points[points.length - 1].y);
+    ctx.stroke();
+
+    for (var i = 0, len = points.length; i < len; i++) {
+      dx = points[i].x - points[points.length - 1].x;
+      dy = points[i].y - points[points.length - 1].y;
+      d = dx * dx + dy * dy;
+
+      if (d < 2000 && Math.random() > d / 2000) {
+        ctx.beginPath();
+        ctx.strokeStyle = 'rgba(0,0,0,0.3)';
+        ctx.moveTo(points[points.length - 1].x + (dx * 0.5), points[points.length - 1].y + (dy * 0.5));
+        ctx.lineTo(points[points.length - 1].x - (dx * 0.5), points[points.length - 1].y - (dy * 0.5));
+        ctx.stroke();
+      }
+    }
+    
+    hue++;
+    if (hue >= 360) {
+      hue = 0;
+    }
+    if (ctx.lineWidth >= 11 || ctx.lineWidth <= 1) {
+      direction = !direction;
+    }
+
+    if (direction) {
+      ctx.lineWidth++;
+    } else {
+      ctx.lineWidth--;
+    }
+  };
+  
+  canvas.addEventListener('mousedown', (e) => {
+    points = [];
+    isDrawing = true;
+    points.push({ x: e.clientX, y: e.clientY });
+    // [lastX, lastY] = [e.offsetX, e.offsetY];
+  });
+
+  canvas.addEventListener('mousemove', draw);
+  canvas.addEventListener('mouseup', () => {
+    isDrawing = false;
+    points.length = 0;
+  });
+  canvas.addEventListener('mouseout', () => isDrawing = false);
+
+
+</script>
+
+<style>
+  html, body {
+    margin: 0;
+    background-image: url(https://img.freepik.com/free-photo/brick-wall_1154-638.jpg?size=626&ext=jpg&ga=GA1.2.405492349.1609372800);
+  }
+</style>
+
+</body>
+</html>
