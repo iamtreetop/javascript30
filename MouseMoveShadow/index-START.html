@@ -6,7 +6,7 @@
 </head>
 <body>
 
-  <div class="hero">
+  <div class="lakers">
     <h1 contenteditable>LAKERS</h1>
   </div>
 
@@ -23,7 +23,7 @@
     margin: 0;
   }
 
-  .hero {
+  .lakers {
     min-height: 100vh;
     display: flex;
     justify-content: center;
@@ -37,34 +37,35 @@
   }
   </style>
 
-<script>
-  const hero = document.querySelector('.hero');
-  const text = hero.querySelector('h1')
-  const walk = 100; //100px
-  function shadow(e) {
-    // const width = hero.offsetWidth;
-    // const height = hero.offsetHeight;
-    const { offsetWidth: width, offsetHeight: height } = hero;
-    let { offsetX: x, offsetY: y} = e;
-    // normalization
+  <script>
+    const laker = document.querySelector('.lakers');
+    const text = laker.querySelector('h1')
+    const pos = 100; // how drastic of a shadow
 
-    if(this !== e.target){
-      x = x + e.target.offsetLeft;
-      y = y + e.target.offsetTop;
+    function shadow(e) {
+      const { offsetWidth: width, offsetHeight: height } = laker;
+      let { offsetX: x, offsetY: y} = e;
+
+      // normalization
+      if(this !== e.target){
+        x = x + e.target.offsetLeft;
+        y = y + e.target.offsetTop;
+      }
+      
+      // deal with flat numbers 
+      // make sure we have negatives and positives for x and y
+      const xPos = Math.floor((x / width * pos) - (pos / 2));
+      const yPos = Math.floor((y / height * pos) - (pos / 2));
+      
+      text.style.textShadow = `
+        ${xPos}px ${yPos}px 0 white,
+        ${xPos * -1}px ${yPos}px 0 rgba(0,0,255,0.7),
+        ${yPos}px ${xPos * -1}px 0 rgba(6,25,34,0.7),
+        ${yPos * -1}px ${xPos}px 0 rgba(5,37,130,0.7)
+      `;
     }
-    
-    const xWalk = Math.round((x / width * walk) - (walk / 2));
-    const yWalk = Math.round((y / height * walk) - (walk / 2));
-    
-    text.style.textShadow = `
-      ${xWalk}px ${yWalk}px 0 white,
-      ${xWalk * -1}px ${yWalk}px 0 rgba(0,0,255,0.7),
-      ${yWalk}px ${xWalk * -1}px 0 rgba(6,25,34,0.7),
-      ${yWalk * -1}px ${xWalk}px 0 rgba(5,37,130,0.7)
-    `;
-  }
 
-  hero.addEventListener('mousemove', shadow);
-</script>
+    laker.addEventListener('mousemove', shadow);
+  </script>
 </body>
 </html>
