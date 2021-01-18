@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>👀👀👀Follow Along Nav</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+      <ul class="menu">
+        <li><a href="">MLK</a></li>
+        <li><a href="">I</a></li>
+        <li><a href="">Have</a></li>
+        <li><a href="">a</a></li>
+        <li><a href="">Dream</a></li>
+      </ul>
+    </nav>
+
+    <div class="wrapper">
+      <p>So even though we face the difficulties of today and tomorrow, I still have a <a href="">dream</a>. It is a dream deeply rooted in the <a href=""> American dream</a>. I have a dream that one day this nation will <a href="">rise up</a> and live out the true meaning of its creed: We hold these truths to be self-evident, that all men are <a href="">created equal</a>.</p>
+      <p>I have a <a href="">dream</a> that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of <a href="">brotherhood</a>.</p>
+      <p>I have a <a href="">dream</a> that one day even the state of Mississippi, a state sweltering with the heat of <a href="">injustice</a>, sweltering with the heat of <a href="">oppression</a> will be transformed into an oasis of <a href="">freedom</a> and <a href="">justice</a>.</p>
+      <p>I have a <a href="">dream</a> that my four little children will one day live in a nation where they will not be judged by the <a href="">color of their skin</a> but by the content of their <a href="">character</a>. I have a dream today.</p>
+      <p>I have a <a href="">dream</a> that one day down in Alabama with its <a href="">vicious racist</a>, with its governor having his lips dripping with the words of interposition and nullification, one day right down in Alabama little black boys and black girls will be able to <a href="">join hands</a> with little white boys and white girls as <a href="">sisters</a> and <a href="">brothers</a>. I have a dream today.</p>
+      <p>I have a <a href="">dream</a> that one day every valley shall be exalted, every hill and mountain shall be made low, the rough places will be made plain, and the crooked places will be made straight, and the glory of the Lord shall be revealed, and all flesh shall see it <a href="">together</a>.</p>       
+    </div>
+
+  <script>
+    const links = document.querySelectorAll('a');
+    const highlight = document.createElement('span');
+    highlight.classList.add('highlight');
+    document.body.append(highlight);
+
+    function highlightLink() {
+      const linkCoords = this.getBoundingClientRect();
+      console.log(linkCoords);
+      
+      const coords = {
+        width: linkCoords.width,
+        height: linkCoords.height,
+        top: linkCoords.top + window.scrollY,
+        left: linkCoords.left + window.scrollX
+      }
+
+      highlight.style.width = `${coords.width}px`;
+      highlight.style.height = `${coords.height}px`;
+      highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+    }
+
+    links.forEach(a => a.addEventListener('mouseenter', highlightLink));
+  </script>
+</body>
+</html>
+
