@@ -1,6 +1,6 @@
 html {
   box-sizing: border-box;
-  background: url('https://source.unsplash.com/NFs6dRTBgaM/2000x2000') fixed;
+  background: url('https://images.unsplash.com/photo-1567459169668-95d355371bda?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1349&q=80') fixed;
   background-size: cover;
 }
 
@@ -18,18 +18,23 @@ body {
   margin: 0;
 }
 
+img {
+  height: 100%;
+  width: 100%
+}
+
 .items {
-  height: 800px;
+  height: 600px;
   padding: 100px;
   width: 100%;
-  border: 1px solid white;
+  /* border: 1px solid white; */
   overflow-x: scroll;
   overflow-y: hidden;
   white-space: nowrap;
   user-select: none;
   cursor: pointer;
   transition: all 0.2s;
-  transform: scale(0.98);
+  transform: scale(0.9);
   will-change: transform;
   position: relative;
   background: rgba(255,255,255,0.1);
@@ -46,25 +51,26 @@ body {
 
 .item {
   width: 200px;
-  height: calc(100% - 40px);
+  height: calc(100% - 100px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   font-size: 80px;
   font-weight: 100;
-  color: rgba(0,0,0,0.15);
+  color: white;
   box-shadow: inset 0 0 0 10px rgba(0,0,0,0.15);
 }
 
-.item:nth-child(9n+1) { background: dodgerblue;}
-.item:nth-child(9n+2) { background: goldenrod;}
-.item:nth-child(9n+3) { background: paleturquoise;}
-.item:nth-child(9n+4) { background: gold;}
-.item:nth-child(9n+5) { background: cadetblue;}
-.item:nth-child(9n+6) { background: tomato;}
-.item:nth-child(9n+7) { background: lightcoral;}
-.item:nth-child(9n+8) { background: darkslateblue;}
-.item:nth-child(9n+9) { background: rebeccapurple;}
+.item:nth-child(9n+1) { background: #E31837;}
+.item:nth-child(9n+2) { background: #002244;}
+.item:nth-child(9n+3) { background: #C60C30;}
+.item:nth-child(9n+4) { background: #C60C30;}
+.item:nth-child(9n+5) { background: #004C54;}
+.item:nth-child(9n+6) { background: #241773;}
+.item:nth-child(9n+7) { background:#69BE28;}
+.item:nth-child(9n+8) { background: #A71930;}
+.item:nth-child(9n+9) { background: #FB4F14;}
+.item:nth-child(9n+10) { background: #FFB612;}
 
-.item:nth-child(even) { transform: scaleX(1.31) rotateY(40deg); }
-.item:nth-child(odd) { transform: scaleX(1.31) rotateY(-40deg); }
+.item:nth-child(even) { transform: scaleX(1.1) rotateY(20deg); }
+.item:nth-child(odd) { transform: scaleX(1.1) rotateY(-20deg); }
