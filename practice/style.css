@@ -1,0 +1,32 @@
+.square {
+  color: blue;
+  height: 100px;
+  width: 100px;
+  border: 2px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type=text]{
+  border: 3px solid red;
+}
+
+div {
+  /* position: absolute; */
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  width: 200px;
+  height: 200px;
+  background: cyan;
+}
+
+p {
+  /* position: ; */
+  display: flex;
+  justify-content: flex-end;
+  bottom: 10px;
+  right: 10px;
+  /* background: red; */
+}
